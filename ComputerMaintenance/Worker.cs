@@ -19,11 +19,25 @@ namespace ComputerMaintenance
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
-            }
+            // Commented out - It's just default testing things
+            //while (!stoppingToken.IsCancellationRequested)
+            //{
+            //    _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+            //    await Task.Delay(1000, stoppingToken);
+            //}
+        }
+
+        public override Task StartAsync(CancellationToken cancellationToken)
+        {
+            // At the start of the service, it's time to run the set of the Maintenance class
+            _logger.LogInformation($"[!] Computer Maintenance Service started");
+
+            return base.StartAsync(cancellationToken);
+        }
+
+        public override Task StopAsync(CancellationToken cancellationToken)
+        {
+            return base.StopAsync(cancellationToken);
         }
     }
 }

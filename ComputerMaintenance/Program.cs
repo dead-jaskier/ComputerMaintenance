@@ -5,6 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using ComputerMaintenance.Classes;
+using ComputerMaintenance.Classes.Interfaces;
+
+
+
 namespace ComputerMaintenance
 {
     public class Program
@@ -19,6 +24,7 @@ namespace ComputerMaintenance
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddHostedService<Worker>();
+                    services.AddSingleton<IMaintenance, Maintenance>();
                 });
     }
 }
